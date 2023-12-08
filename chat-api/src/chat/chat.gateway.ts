@@ -13,7 +13,7 @@ interface IMessage {
   timeSent: string;
 }
 const openai = new OpenAI({
-  apiKey: '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',
+  apiKey: '',
 });
 
 async function TranslateMessage(message: IMessage, language: string) {

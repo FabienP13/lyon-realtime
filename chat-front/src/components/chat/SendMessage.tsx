@@ -12,6 +12,7 @@ interface Props {
 
 const SendMessage = ({ socket, username, messages }: Props) => {
     const [text, setText] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -31,12 +32,12 @@ const SendMessage = ({ socket, username, messages }: Props) => {
                 <div className="flex flex-col m-2">
                     <textarea placeholder="Message" value={text} onChange={(e) => setText(e.target.value)} className="textarea textarea-bordered w-full" />
                     <div className="m-auto">
-                        <button className="btn btn-outline btn-primary btn-xs w-12 m-3" type="submit">
+                        <button className="btn btn-outline btn-accent btn-xs w-12 m-3" type="submit">
                             Send
                         </button>
-                        <SuggestButton socket={socket} messages={messages} />
+                        <SuggestButton socket={socket} messages={messages} loading={loading} setLoading={setLoading} />
                     </div>
-                    <SuggestedInformations socket={socket} username={username} />
+                    <SuggestedInformations socket={socket} username={username} loading={loading} setLoading={setLoading} />
                 </div>
             </form>
         </div>

@@ -4,13 +4,16 @@ import { Socket } from "socket.io-client";
 interface Props {
     socket: Socket;
     username: string;
+    loading: boolean;
+    setLoading(value: boolean): void;
 }
 
-const SuggestedInformations = ({ username, socket }: Props) => {
+const SuggestedInformations = ({ username, socket, loading, setLoading }: Props) => {
     const [suggestedMessages, setSuggestedMessages] = useState([]);
-
+    console.log(loading);
     useEffect(() => {
         socket.on("suggested-message", (data: any) => {
+            setLoading(false);
             setSuggestedMessages(JSON.parse(data).suggestions);
         });
     }, []);
@@ -46,6 +49,8 @@ const SuggestedInformations = ({ username, socket }: Props) => {
                     </svg>
                 </button>
             )}
+
+            {loading && <span className="loading loading-spinner text-warning"></span>}
         </div>
     );
 };

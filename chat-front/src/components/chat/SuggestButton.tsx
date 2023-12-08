@@ -5,9 +5,11 @@ import { IMessage } from "./Message";
 interface Props {
     socket: Socket;
     messages: IMessage[];
+    loading: boolean;
+    setLoading(value: boolean): void;
 }
 
-const SuggestButton = ({ messages, socket }: Props) => {
+const SuggestButton = ({ messages, socket, loading, setLoading }: Props) => {
     const suggestMessage = (e: any) => {
         e.preventDefault();
         let messagesDatas: any[] = [];
@@ -16,6 +18,7 @@ const SuggestButton = ({ messages, socket }: Props) => {
                 messagesDatas.push(message.content);
             }
         });
+        setLoading(true);
         socket.emit("suggest-message", messagesDatas);
     };
     return (

@@ -22,7 +22,7 @@ const VerifiedInformation = ({ message, isMe, socket }: Props) => {
     return (
         <div>
             {verifiedInformation && (
-                <div className={`chat chat-bubble ${isMe ? "chat-end" : "chat-start"} ${verifiedInformation.includes("False") ? "chat-bubble-error" : "chat-bubble-success"}  `}>
+                <div className={`chat chat-bubble text-sm ${isMe ? "chat-end" : "chat-start"} ${verifiedInformation.includes("False") ? "chat-bubble-error" : "chat-bubble-success"}  `}>
                     <p>{verifiedInformation}</p>
                 </div>
             )}
