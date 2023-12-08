@@ -37,8 +37,12 @@ const Chat = () => {
                 </h3>
             )}
             {!username && <Username socket={socket} setUsername={setUsername} />}
-            {username && <SendMessage socket={socket} username={username} messages={messages} />}
-            <Messages socket={socket} messages={messages} username={username} />
+            <div className="card w-7/12 bg-neutral  text-primary-content m-auto">
+                <div className="card-body w-100">
+                    {username && <Messages socket={socket} messages={messages} username={username} />}
+                    {username && <SendMessage socket={socket} username={username} messages={messages} />}
+                </div>
+            </div>
         </PrimeReactProvider>
     );
 };

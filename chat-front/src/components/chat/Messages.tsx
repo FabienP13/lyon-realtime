@@ -9,11 +9,14 @@ interface Props {
 const Messages = ({ messages, username, socket }: Props) => {
     return (
         <div>
-            {messages.map((msg) => (
-                <div key={msg.timeSent}>
-                    <Message message={msg} isMe={msg.username === username} socket={socket} />{" "}
-                </div>
-            ))}
+            {messages.map(
+                (msg) =>
+                    msg.content !== null && (
+                        <div key={msg.timeSent}>
+                            <Message message={msg} isMe={msg.username === username} socket={socket} />
+                        </div>
+                    )
+            )}
         </div>
     );
 };
